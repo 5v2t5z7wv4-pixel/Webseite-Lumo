@@ -16,7 +16,6 @@ color: #1a2a4a;
 }
 .bg-accent { background-color: #FFEA00; }
 
-
 nav {
 background-color: #ffffff;
 border: 1px solid #e0eeff;
@@ -30,18 +29,15 @@ top: 1rem;
 z-index: 1000;
 }
 
-
 nav a {
 color: #1a2a4a;
 transition: opacity 0.3s;
 text-decoration: none;
 }
 
-
 nav a:hover {
 opacity: 0.6;
 }
-
 
 .gallery-item {
 background-color: #ffffff;
@@ -49,11 +45,9 @@ border: 1px solid #e0eeff;
 border-radius: 12px;
 }
 
-
 h1, h2 {
 color: #1a2a4a;
 }
-
 
 /* Linie Animation */
 .line-svg {
@@ -67,31 +61,31 @@ animation: drawLine 3.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
 }
 
 @keyframes drawLine {
-  to {
-    stroke-dashoffset: 0;
+to {
+stroke-dashoffset: 0;
   }
 }
 
-/* Neue Micro-Animationen */
+/* Micro-Animationen */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+from {
+opacity: 0;
+transform: translateY(20px);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+to {
+opacity: 1;
+transform: translateY(0);
   }
 }
 
 .animate-in {
-  animation: fadeInUp 0.8s ease-out forwards;
+animation: fadeInUp 0.8s ease-out forwards;
 }
 
-/* Lumo. Font Flicker Effect */
+/* Lumo. Font Flicker Effect - SLOWER */
 .letter {
-  display: inline-block;
-  animation: fontFlicker 0.4s infinite;
+display: inline-block;
+animation: fontFlicker 3s infinite;
 }
 
 .letter:nth-child(1) { animation-delay: 0.0s; }
@@ -101,53 +95,80 @@ animation: drawLine 3.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
 .letter:nth-child(5) { animation-delay: 0.4s; }
 
 @keyframes fontFlicker {
-  0% { font-family: 'Arial', sans-serif; }
-  25% { font-family: 'Courier New', monospace; }
-  50% { font-family: 'Georgia', serif; }
-  75% { font-family: 'Impact', sans-serif; }
-  100% { font-family: 'Arial', sans-serif; }
+0% { font-family: 'Arial', sans-serif; }
+10% { font-family: 'Courier New', monospace; }
+20% { font-family: 'Georgia', serif; }
+30% { font-family: 'Impact', sans-serif; }
+40% { font-family: 'Verdana', sans-serif; }
+50% { font-family: 'Times New Roman', serif; }
+60% { font-family: 'Trebuchet MS', cursive; }
+70% { font-family: 'Tahoma', sans-serif; }
+80% { font-family: 'Palatino', serif; }
+90% { font-family: 'Comic Sans MS', cursive; }
+100% { font-family: 'Arial', sans-serif; }
+}
+
+/* Button Float Animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.btn-move {
+  animation: float 3s ease-in-out infinite;
 }
 
 </style>
 </head>
 
-
 <body class="font-sans">
-
 
 <!-- Nav -->
 <nav class="flex justify-between items-center">
 <img src="images/Bild.jpg" alt="Logo" class="h-8 w-auto">
-<div class="space-x-6 text-sm uppercase tracking-widest font-bold">
+<div class="hidden md:flex space-x-6 text-sm uppercase tracking-widest font-bold">
 <a href="#work">Work</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
 </div>
-</nav>
 
+<!-- Burger Button -->
+<button id="burger-btn" class="md:hidden flex flex-col gap-1 z-[1001]">
+<span class="w-6 h-0.5 bg-[#1a2a4a]"></span>
+<span class="w-6 h-0.5 bg-[#1a2a4a]"></span>
+<span class="w-6 h-0.5 bg-[#1a2a4a]"></span>
+</button>
+
+<!-- Mobile Menü -->
+<div id="mobile-menu" class="hidden fixed top-24 right-4 bg-white p-6 shadow-2xl rounded-2xl border border-blue-100 z-[1000] md:hidden">
+<div class="flex flex-col space-y-4 font-bold uppercase text-sm">
+<a href="#work">Work</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+</nav>
 
 <!-- Hero -->
 <section class="h-[70vh] flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
-<!-- Hintergrund Linie - Kräftiger Schwung -->
+<!-- Hintergrund Linie -->
 <div class="absolute z-0 pointer-events-none">
 <svg width="100%" height="500" viewBox="0 0 1400 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;">
 <path class="line-svg" pathLength="2000" d="M-200,400 C100,100 300,800 500,400 C700,0 900,800 1100,400 C1300,0 1500,800 1700,400" />
 </svg>
 </div>
 
-
 <h1 class="text-7xl md:text-9xl font-light mb-6 relative z-10">
 <span class="letter">L</span><span class="letter">u</span><span class="letter">m</span><span class="letter">o</span><span class="letter">.</span>
 </h1>
 <p class="text-lg md:text-xl max-w-md mb-8 opacity-70 relative z-10">The Art behind Simon Frey.</p>
-<a href="#work" class="bg-accent px-8 py-4 text-black font-bold hover:scale-105 transition duration-300 shadow-lg relative z-10">VIEW GALLERY</a>
+<a href="#work" class="bg-accent px-8 py-4 text-black font-bold hover:scale-105 transition duration-300 shadow-lg relative z-10 btn-move">VIEW GALLERY</a>
 </section>
-
 
 <!-- Gallery Section -->
 <section id="work" class="p-20">
 <h2 class="text-3xl font-light mb-12 text-center tracking-widest uppercase">Work</h2>
-
 
 <!-- Filter Buttons -->
 <div class="flex justify-center gap-8 mb-16">
@@ -156,7 +177,6 @@ animation: drawLine 3.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
 <button class="filter-btn hover:opacity-40 transition" data-filter="photo"><i class="ph ph-camera text-xl"></i></button>
 <button class="filter-btn hover:opacity-40 transition" data-filter="3d"><i class="ph ph-cube text-xl"></i></button>
 </div>
-
 
 <!-- Work Images -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
@@ -172,8 +192,20 @@ animation: drawLine 3.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
 <div class="overflow-hidden gallery-item" data-category="photo">
 <img src="images/UhrF.jpg" alt="Art" class="w-full h-auto hover:scale-105 transition duration-500">
 </div>
+<div class="overflow-hidden gallery-item" data-category="photo">
+<img src="images/Flowers.jpg" alt="Art" class="w-full h-auto hover:scale-105 transition duration-500">
+</div>
+<div class="overflow-hidden gallery-item" data-category="photo">
+<img src="images/Peppers.png" alt="Art" class="w-full h-auto hover:scale-105 transition duration-500">
+</div>
+<div class="overflow-hidden gallery-item" data-category="photo">
+<img src="images/MannimMantel.png" alt="Art" class="w-full h-auto hover:scale-105 transition duration-500">
+</div>
+<div class="overflow-hidden gallery-item" data-category="photo">
+<img src="images/ManninPink.png" alt="Art" class="w-full h-auto hover:scale-105 transition duration-500">
+</div>
+</div>
 </section>
-
 
 <!-- About Section -->
 <section id="about" class="p-20 text-center bg-white">
@@ -181,23 +213,54 @@ animation: drawLine 3.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
 <p class="max-w-2xl mx-auto opacity-70">My Name is Simon I am a young student on a FOS in Regensburg. My main focus is on making art and design, I try many different approaches.</p>
 </section>
 
-
 <!-- Footer -->
 <footer class="p-10 border-t border-blue-100 text-center text-sm opacity-50">
 &copy; 2024 LUMOSTUDIO. STAY BRIGHT.
 </footer>
 
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+// Animations
 const elements = document.querySelectorAll("h1, h2, p, .gallery-item, .bg-accent");
 elements.forEach((el, i) => {
 el.style.animationDelay = `${i * 0.1}s`;
 el.classList.add("animate-in");
   });
+
+// Burger Menu
+const burgerBtn = document.getElementById('burger-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+burgerBtn.addEventListener('click', () => {
+mobileMenu.classList.toggle('hidden');
+  });
+
+// Close menu on click
+const menuLinks = document.querySelectorAll('#mobile-menu a');
+menuLinks.forEach(link => {
+link.addEventListener('click', () => {
+mobileMenu.classList.add('hidden');
+    });
+  });
+
+// Gallery Filter
+const filterBtns = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+filterBtns.forEach(btn => {
+btn.addEventListener('click', () => {
+const filter = btn.getAttribute('data-filter');
+galleryItems.forEach(item => {
+if (filter === 'all' || item.getAttribute('data-category') === filter) {
+item.style.display = 'block';
+        } else {
+item.style.display = 'none';
+        }
+      });
+    });
+  });
 });
 </script>
 
-
-</body
+</body>
 </html>
